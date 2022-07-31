@@ -1,7 +1,7 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  FileName.c
+/**        \file  Timer_Lcfg.c
  *        \brief  
  *
  *      \details  
@@ -13,7 +13,9 @@
  *  INCLUDES
  *********************************************************************************************************************/
 #include "Std_Types.h"
-
+#include "Timer_Types.h"
+#include "Timer_Cfg.h"
+#include "DIO.h"
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
 *********************************************************************************************************************/
@@ -25,7 +27,16 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
+const Gpt_ConfigType Gpt_Config[GPT_ACTIVATED_CHANNELS_SIZE] =
+{
+	/* channel							channelTickFreq					channelTickMaxValue					channelMode						gptNotification */
+	// {GPT_16_32_BIT_TIMER0,				500,										0xFF,					GPT_CH_MODE_ONESHOT,			Gpt_NotificationFn},
+	// {GPT_16_32_BIT_TIMER1,				500,										0xFF,					GPT_CH_MODE_ONESHOT,			Gpt_NotificationFn2},
+	{GPT_16_32_BIT_TIMER0,	    		500,										0xFF,					GPT_CH_MODE_CONTINUOUS,			Gpt_NotificationFn  },
+	
+};
 
+uint8 counter;
 /**********************************************************************************************************************
  *  LOCAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
@@ -38,24 +49,30 @@
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
 
+/* Notification callback function implemented by user */
 
-/******************************************************************************
-* \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)        
-* \Description     : Describe this service                                    
-*                                                                             
-* \Sync\Async      : Synchronous                                               
-* \Reentrancy      : Non Reentrant                                             
-* \Parameters (in) : parameterName   Parameter Describtion                     
-* \Parameters (out): None                                                      
-* \Return value:   : Std_ReturnType  E_OK
-*                                    E_NOT_OK                                  
-*******************************************************************************/
-Std_ReturnType FunctionName(AnyType parameterName)
+void Gpt_NotificationFn(void)
 {
+	
+	counter++;
+	if(counter == 4){
+		Dio_WriteChannel(Dio_Channel_F1	,	STD_low);
+	}
+	else if (counter ==10)
+	{
+		Dio_WriteChannel(Dio_Channel_F1	,	STD_high);
+		counter=0;
+	}
+		
 	
 	
 }
+void Gpt_NotificationFn2(void)
+{
+	
+}
+
 
 /**********************************************************************************************************************
- *  END OF FILE: FileName.c
+ *  END OF FILE: Timer_Lcfg.c
  *********************************************************************************************************************/

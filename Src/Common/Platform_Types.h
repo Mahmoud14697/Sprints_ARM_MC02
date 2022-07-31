@@ -1,14 +1,14 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  <Write File Name>
- *       Module:  -
+ *         File:  <Platform Types>
+ *       Module:  - Common Files
  *
- *  Description:  <Write File DESCRIPTION here>     
+ *  Description:  <Platform Data Types>     
  *  
  *********************************************************************************************************************/
-#ifndef <FILE_NAME_H>
-#define <FILE_NAME_H>
+#ifndef PLATFORM_TYPES_H
+#define PLATFORM_TYPES_H
 
 /**********************************************************************************************************************
  * INCLUDES
@@ -29,6 +29,17 @@
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
+/* unsigned data types */
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long uint64;
+
+/* signed data types */
+typedef signed char sint8;
+typedef signed short sint16;
+typedef signed int sint32;
+typedef signed long sint64;
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
@@ -40,8 +51,8 @@
  *********************************************************************************************************************/
 
  
-#endif  /* FILE_NAME_H */
+#endif  /* PLATFORM_TYPES_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Std_Types.h
+ *  END OF FILE: Platofrm_Types.h
  *********************************************************************************************************************/
